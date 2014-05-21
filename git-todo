@@ -86,7 +86,7 @@ process.on('exit', function(){
 			var diff, path = entry[0], by = entry[1], todo = entry[2];
       var file = path.split('/').slice(-1);
       var relpath = path.slice(2);
-      console.info('- [ ] %s [%s](%s)', todo, file, relpath);
+      console.info('- [ ] %s [\n\  %s](%s)', todo, file, relpath);
 		});
 		console.log('');
 	});
