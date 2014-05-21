@@ -12,7 +12,7 @@ path = '.';
 
 PROFILE = false;
 IGNORED_REGEX = /^(log|im(age)?|cache)s?|\.(git|gif|jpg|png|jar)/;
-TODO_REGEX = /(?:\/\/|#|\/\*\s*) *todo\ *\(([^\)]*)\):(.*)/ig;
+TODO_REGEX = /(?:\/\/|\#|\/\*\s*) *todo\ *(?:\(([^\)]*)\))?:(.*)/ig;
 DELIMITER = ',';
 
 maximums = {
@@ -30,8 +30,8 @@ emitter.on('file', function(file){
 		if (err) throw err;
 
 		content.replace(TODO_REGEX, function(matched, by, todo){
-			var bits = by.split(DELIMITER);
-			by = bits[0];
+			var bits = by ? by.split(DELIMITER) : [];
+			by = bits[0] || '';
 			var milestone = bits[1] || '';
 			
 			by = by.trim();
@@ -130,7 +130,7 @@ function recurse(directory){
 recurse(path);
 
 /* syntax test */
-
+// todo: no person
 // todo(ibolmo): Don't need to use #
     //  todo( ibolmo ):  Arbitrary spacing
 // todo(anonymous): Any person
