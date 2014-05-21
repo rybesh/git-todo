@@ -3,5 +3,5 @@
 # This hook script is called after a successful
 # commit is made.
 
-todo
-
+todo > TODO.md
+git diff
