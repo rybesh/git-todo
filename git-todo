@@ -79,24 +79,15 @@ process.on('exit', function(){
 
 	milestones.unshift('');
 
-	milestones.forEach(function(milestone){
+  milestones.forEach(function(milestone){
 		var entries = todos[milestone];
 		if (milestone) console.log(milestone);
 		if (entries) entries.forEach(function(entry){
-			
-			var diff, file = entry[0], by = entry[1], todo = entry[2];
-			if ((diff = maximums.file - file.length)) file += Array(++diff).join(' ');
-			if ((diff = maximums.by - by.length)) by += Array(++diff).join(' ');
-			if ((diff = maximums.todo - todo.length)) todo += Array(++diff).join(' ');
-			
-      var msg = util.format('  %s  %s  %s', by, todo, file);
-      if (msg.length <= 80){
-			  console.error(msg);
-      }else{
-        console.error('  %s  %s', by, todo);
-        console.error('  %s  \t%s', by, file);
-        console.error();
-      }
+			var diff, path = entry[0], by = entry[1], todo = entry[2];
+      console.log
+      var file = path.split('/').slice[-1];
+      var relpath = path.slice(2)
+      console.info('- [ ] %s [%s](%s)', todo, file, relpath)
 		});
 		console.log('');
 	});
