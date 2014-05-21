@@ -6,6 +6,7 @@
 fs = require('./utils/graceful-fs.js');
 events = require('events');
 vm = require('vm');
+util = require('util');
 
 argv = process.argv.slice(2);
 path = '.';
@@ -88,7 +89,14 @@ process.on('exit', function(){
 			if ((diff = maximums.by - by.length)) by += Array(++diff).join(' ');
 			if ((diff = maximums.todo - todo.length)) todo += Array(++diff).join(' ');
 			
-			console.error('  %s  %s  %s', by, todo, file);
+      var msg = util.format('  %s  %s  %s', by, todo, file);
+      if (msg.length <= 80){
+			  console.error(msg);
+      }else{
+        console.error('  %s  %s', by, todo);
+        console.error('  %s  \t%s', by, file);
+        console.error();
+      }
 		});
 		console.log('');
 	});
